@@ -5,16 +5,20 @@
  */
 package com.lumialvarez.tools;
 
+import com.lumialvarez.tools.system.OperativeSystem;
+import com.lumialvarez.tools.system.ShellUtils;
+import com.lumialvarez.tools.system.TraceRoute;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 /**
  *
  * @author Lumialvarez
  */
 public class Shell {
+
     public static String executeCommand(String command) throws Exception {
         StringBuilder output = new StringBuilder();
         Process process;
@@ -31,5 +35,22 @@ public class Shell {
             throw new Exception("Error al ejecutar el comando del sistema", e);
         }
         return output.toString();
+    }
+
+    public static List<TraceRoute> traceRoute(String endpoint) throws Exception {
+        System.out.println("Start TraceRoute to " + endpoint);
+        String output = "";
+        switch (OperativeSystem.getCurrentOS()) {
+            case OperativeSystem.WINDOWS:
+                output = executeCommand("tracert " + endpoint);
+                break;
+            case OperativeSystem.LINUX:
+                output = executeCommand("traceroute " + endpoint);
+                break;
+            default:
+                throw new UnsupportedOperationException("Traceroute not Implemented for " + OperativeSystem.getCurrentOS());
+        }
+        System.out.println("End TraceRoute");
+        return ShellUtils.extractTraceRoute(output);
     }
 }

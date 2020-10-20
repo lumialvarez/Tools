@@ -23,6 +23,7 @@ public class TraceRoute {
         this.tiempo1 = 0;
         this.tiempo2 = 0;
         this.tiempo3 = 0;
+        this.alcanzable = true;
     }
 
     public int getIndex() {
