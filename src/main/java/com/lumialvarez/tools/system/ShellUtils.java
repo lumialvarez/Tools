@@ -147,7 +147,7 @@ public class ShellUtils {
             traceRoute.setTiempo3(tTiempo3.equals("*") ? -1 : Float.parseFloat(tTiempo3));
             traceRoute.setNombre(tEndpoint);
             traceRoute.setIp(tIp);
-            
+
             if (traceRoute.getTiempo1() == -1 && traceRoute.getTiempo2() == -1 && traceRoute.getTiempo3() == -1) {
                 traceRoute.setAlcanzable(false);
             }
@@ -157,5 +157,193 @@ public class ShellUtils {
         }
 
         return list;
+    }
+
+    public static Ping extractPing(String text) throws Exception {
+        switch (OperativeSystem.getCurrentOS()) {
+            case OperativeSystem.WINDOWS:
+                return extractPingWindows(text);
+            case OperativeSystem.LINUX:
+                return extractPingLinux(text);
+            default:
+                throw new UnsupportedOperationException("Traceroute not Implemented for " + OperativeSystem.getCurrentOS());
+        }
+    }
+
+    public static Ping extractPingWindows(String text) {
+        Ping ping = new Ping();
+        int index = 0;
+        int indexPrimerEco = -1;
+        int indexUltimoEco = -1;
+        int indexPaquetes = -1;
+        int indexTiempos = -1;
+        String[] lines = text.split("\n");
+
+        for (String s : lines) {
+            if (indexUltimoEco == -1) {
+                if (indexPrimerEco == -1 && s.contains("=")) {
+                    indexPrimerEco = index;
+                }
+
+                if (indexPrimerEco >= 0 && s.length() == 0) {
+                    indexUltimoEco = index - 1;
+                }
+            } else if (indexPaquetes == -1) {
+                if (s.contains("=")) {
+                    indexPaquetes = index;
+                }
+            } else if (indexTiempos == -1) {
+                if (s.contains("=")) {
+                    indexTiempos = index;
+                    break;
+                }
+            }
+
+            index++;
+        }
+
+        for (int i = indexPrimerEco; i <= indexUltimoEco; i++) {
+            String linea = lines[i];
+            if (linea.contains(":")) {
+                linea = linea.replaceAll("ms", "").split(":")[1];
+                StringTokenizer tokens = new StringTokenizer(linea);
+                String tBytes = tokens.nextToken().split("=")[1];
+                String tTiempo = tokens.nextToken().split("=")[1];
+                String tTtl = tokens.nextToken().split("=")[1];
+
+                PingEco eco = new PingEco();
+                eco.setTiempo(Float.parseFloat(tTiempo));
+                eco.setTtl(Integer.parseInt(tTtl));
+                ping.getEcos().add(eco);
+            } else {
+                PingEco eco = new PingEco();
+                eco.setTiempo(-1);
+                eco.setTtl(-1);
+                ping.getEcos().add(eco);
+            }
+
+        }
+        if (indexPaquetes >= 0) {
+            String lineaPaquetes = lines[indexPaquetes];
+            StringTokenizer tokens = new StringTokenizer(lineaPaquetes);
+            String tEnviados = null;
+            String tRecibidos = null;
+            String tPerdidos = null;
+            while (tokens.hasMoreTokens()) {
+                if (tokens.nextToken().equals("=")) {
+                    if (tEnviados == null) {
+                        tEnviados = tokens.nextToken().replaceAll(",", "");
+                    } else if (tRecibidos == null) {
+                        tRecibidos = tokens.nextToken().replaceAll(",", "");
+                    } else if (tPerdidos == null) {
+                        tPerdidos = tokens.nextToken().replaceAll(",", "");
+                    }
+                }
+            }
+            ping.setEnviados(Integer.parseInt(tEnviados));
+            ping.setRecibidos(Integer.parseInt(tRecibidos));
+            ping.setPerdidos(Integer.parseInt(tPerdidos));
+        }
+
+        if (indexTiempos >= 0) {
+            String lineaTiempos = lines[indexTiempos].replaceAll("ms", "");
+            StringTokenizer tokens = new StringTokenizer(lineaTiempos);
+            String tMinimo = null;
+            String tMaximo = null;
+            String tMedia = null;
+            while (tokens.hasMoreTokens()) {
+                if (tokens.nextToken().equals("=")) {
+                    if (tMinimo == null) {
+                        tMinimo = tokens.nextToken().replaceAll(",", "");
+                    } else if (tMaximo == null) {
+                        tMaximo = tokens.nextToken().replaceAll(",", "");
+                    } else if (tMedia == null) {
+                        tMedia = tokens.nextToken().replaceAll(",", "");
+                    }
+                }
+            }
+            ping.setMinimo(Float.parseFloat(tMinimo));
+            ping.setMaximo(Float.parseFloat(tMaximo));
+            ping.setMedia(Float.parseFloat(tMedia));
+        }
+
+        return ping;
+    }
+
+    public static Ping extractPingLinux(String text) {
+        Ping ping = new Ping();
+        int index = 0;
+        int indexPrimerEco = -1;
+        int indexUltimoEco = -1;
+        int indexPaquetes = -1;
+        int indexTiempos = -1;
+        String[] lines = text.split("\n");
+
+        for (String s : lines) {
+            if (indexUltimoEco == -1) {
+                if (indexPrimerEco == -1 && s.contains(":")) {
+                    indexPrimerEco = index;
+                }
+
+                if (indexPrimerEco >= 0 && s.length() == 0) {
+                    indexUltimoEco = index - 1;
+                }
+            }
+            if (s.contains("---")) {
+                indexPaquetes = index + 1;
+                indexTiempos = index + 2;
+                break;
+            }
+
+            index++;
+        }
+
+        for (int i = indexPrimerEco; i <= indexUltimoEco; i++) {
+            String linea = lines[i];
+
+            linea = linea.split(":")[1];
+            StringTokenizer tokens = new StringTokenizer(linea);
+            String tSeq = tokens.nextToken().split("=")[1];
+            String tTtl = tokens.nextToken().split("=")[1];
+            String tTiempo = tokens.nextToken().split("=")[1];
+
+            PingEco eco = new PingEco();
+            eco.setTiempo(Float.parseFloat(tTiempo));
+            eco.setTtl(Integer.parseInt(tTtl));
+            ping.getEcos().add(eco);
+        }
+        
+        if (indexPaquetes >= 0) {
+            String lineaPaquetes = lines[indexPaquetes];
+            String[] items = lineaPaquetes.split(",");
+            String tEnviados = null;
+            String tRecibidos = null;
+            String tPerdidos = null;
+            
+            tEnviados = items[0].trim().split(" ")[0].trim();
+            tRecibidos = items[1].trim().split(" ")[0].trim();
+            
+            ping.setEnviados(Integer.parseInt(tEnviados));
+            ping.setRecibidos(Integer.parseInt(tRecibidos));
+            ping.setPerdidos(ping.getEnviados() - ping.getRecibidos());
+        }
+
+        if (indexTiempos >= 0) {
+            String lineaTiempos = lines[indexTiempos];
+            String[] items = lineaTiempos.split("=");
+            String tMinimo = null;
+            String tMaximo = null;
+            String tMedia = null;
+            lineaTiempos = items[1].trim();
+            tMinimo = lineaTiempos.split("/")[0].trim();
+            tMedia = lineaTiempos.split("/")[1].trim();
+            tMaximo = lineaTiempos.split("/")[2].trim();
+            
+            ping.setMinimo(Float.parseFloat(tMinimo));
+            ping.setMaximo(Float.parseFloat(tMaximo));
+            ping.setMedia(Float.parseFloat(tMedia));
+        }
+
+        return ping;
     }
 }

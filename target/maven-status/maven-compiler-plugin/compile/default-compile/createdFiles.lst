@@ -1,5 +1,6 @@
 com\lumialvarez\tools\Shell.class
 com\lumialvarez\tools\system\ShellUtils.class
+com\lumialvarez\tools\system\PingEco.class
 com\lumialvarez\tools\system\TraceRoute.class
 com\lumialvarez\tmp\TempTest.class
 com\lumialvarez\tools\system\OperativeSystem.class
