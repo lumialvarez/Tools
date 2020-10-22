@@ -18,11 +18,13 @@ public class TraceRoute {
     private float tiempo2;
     private float tiempo3;
     private boolean alcanzable;
+    private float tiempoAnalisis;
 
     public TraceRoute() {
         this.tiempo1 = 0;
         this.tiempo2 = 0;
         this.tiempo3 = 0;
+        this.tiempoAnalisis = -1;
         this.alcanzable = true;
     }
 
@@ -82,9 +84,17 @@ public class TraceRoute {
         this.alcanzable = alcanzable;
     }
 
+    public float getTiempoAnalisis() {
+        return tiempoAnalisis;
+    }
+
+    public void setTiempoAnalisis(float tiempoAnalisis) {
+        this.tiempoAnalisis = tiempoAnalisis;
+    }
+
     @Override
     public String toString() {
-        return "TraceRoute{" + "index=" + index + ", nombre=" + nombre + ", ip=" + ip + ", tiempo1=" + tiempo1 + ", tiempo2=" + tiempo2 + ", tiempo3=" + tiempo3 + ", alcanzable=" + alcanzable + '}';
+        return "TraceRoute{" + "index=" + index + ", nombre=" + nombre + ", ip=" + ip + ", tiempo1=" + tiempo1 + ", tiempo2=" + tiempo2 + ", tiempo3=" + tiempo3 + ", alcanzable=" + alcanzable + ", tiempoAnalisis=" + tiempoAnalisis + '}';
     }
 
 }

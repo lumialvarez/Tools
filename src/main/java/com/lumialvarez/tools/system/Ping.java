@@ -15,6 +15,7 @@ import java.util.List;
 public class Ping {
 
     private List<PingEco> ecos;
+    private String endpoint;
     private int enviados;
     private int recibidos;
     private int perdidos;
@@ -24,6 +25,14 @@ public class Ping {
 
     public Ping() {
         ecos = new ArrayList<>();
+    }
+
+    public String getEndpoint() {
+        return endpoint;
+    }
+
+    public void setEndpoint(String endpoint) {
+        this.endpoint = endpoint;
     }
 
     public List<PingEco> getEcos() {
@@ -84,7 +93,7 @@ public class Ping {
 
     @Override
     public String toString() {
-        return "Ping{" + "ecos= " + ecos.size() + " items, enviados=" + enviados + ", recibidos=" + recibidos + ", perdidos=" + perdidos + ", minimo=" + minimo + ", maximo=" + maximo + ", media=" + media + '}';
+        return "Ping{" + "cos= " + ecos.size() + " items, endpoint=" + endpoint + ", enviados=" + enviados + ", recibidos=" + recibidos + ", perdidos=" + perdidos + ", minimo=" + minimo + ", maximo=" + maximo + ", media=" + media + '}';
     }
 
 }

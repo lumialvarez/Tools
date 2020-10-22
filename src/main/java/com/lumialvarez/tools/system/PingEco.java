@@ -11,8 +11,17 @@ package com.lumialvarez.tools.system;
  */
 public class PingEco {
 
+    private int secuencia;
     private float tiempo;
     private int ttl;
+
+    public int getSecuencia() {
+        return secuencia;
+    }
+
+    public void setSecuencia(int secuencia) {
+        this.secuencia = secuencia;
+    }
 
     public float getTiempo() {
         return tiempo;
@@ -28,6 +37,11 @@ public class PingEco {
 
     public void setTtl(int ttl) {
         this.ttl = ttl;
+    }
+
+    @Override
+    public String toString() {
+        return "PingEco{" + "secuencia=" + secuencia + ", tiempo=" + tiempo + ", ttl=" + ttl + '}';
     }
 
 }

@@ -1,4 +1,5 @@
 com\lumialvarez\tools\Shell.class
+com\lumialvarez\tools\Shell$1.class
 com\lumialvarez\tools\system\ShellUtils.class
 com\lumialvarez\tools\system\PingEco.class
 com\lumialvarez\tools\system\TraceRoute.class
