@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.lumialvarez</groupId>
+    <groupId>com.lmalvarez</groupId>
     <artifactId>Tools</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
@@ -72,4 +72,17 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>a0bcalegpr2iy-artifactory-primary-0-releases</name>
+            <url>https://lmalvarez.jfrog.io/artifactory/default-maven-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>a0bcalegpr2iy-artifactory-primary-0-snapshots</name>
+            <url>https://lmalvarez.jfrog.io/artifactory/default-maven-local</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
