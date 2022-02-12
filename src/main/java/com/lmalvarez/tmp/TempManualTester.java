@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author luigu
  */
-public class TempTest {
+public class TempManualTester {
 
     private static String pingExampleWindows = "Haciendo ping a www.google.com [172.217.8.68] con 32 bytes de datos:\n"
             + "Respuesta desde 172.217.8.68: bytes=32 tiempo=85ms TTL=115\n"

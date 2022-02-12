@@ -1,10 +1,11 @@
 package com.lmalvarez.tools.system;
 
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-public class ShellTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class ShellTests {
 
     @Test
     public void test1() {
