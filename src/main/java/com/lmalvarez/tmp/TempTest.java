@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lumialvarez.tmp;
+package com.lmalvarez.tmp;
 
-import com.lumialvarez.tools.Shell;
-import com.lumialvarez.tools.system.Ping;
-import com.lumialvarez.tools.system.PingEco;
-import com.lumialvarez.tools.system.TraceRoute;
-import com.lumialvarez.tools.system.ShellUtils;
-import java.util.ArrayList;
+import com.lmalvarez.tools.Shell;
+import com.lmalvarez.tools.system.TraceRoute;
+
 import java.util.List;
 
 /**
