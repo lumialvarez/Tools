@@ -21,7 +21,7 @@ pipeline {
 		}
 		stage('Deploy') {
 			steps {
-				sh 'mvn deploy'
+				sh 'mvn deploy -DskipTests -s /var/lib/jenkins/settings.jfrog.xml'
 			}
 		}
 	}
