@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lmalvarez.tools.system;
+package com.lmalvarez.tools.system.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author luigu
+ * @author lmalvarez
  */
 public class Ping {
 
@@ -19,9 +19,9 @@ public class Ping {
     private int enviados;
     private int recibidos;
     private int perdidos;
-    private float minimo;
-    private float maximo;
-    private float media;
+    private double minimo;
+    private double maximo;
+    private double media;
 
     public Ping() {
         ecos = new ArrayList<>();
@@ -67,27 +67,27 @@ public class Ping {
         this.perdidos = perdidos;
     }
 
-    public float getMinimo() {
+    public double getMinimo() {
         return minimo;
     }
 
-    public void setMinimo(float minimo) {
+    public void setMinimo(double minimo) {
         this.minimo = minimo;
     }
 
-    public float getMaximo() {
+    public double getMaximo() {
         return maximo;
     }
 
-    public void setMaximo(float maximo) {
+    public void setMaximo(double maximo) {
         this.maximo = maximo;
     }
 
-    public float getMedia() {
+    public double getMedia() {
         return media;
     }
 
-    public void setMedia(float media) {
+    public void setMedia(double media) {
         this.media = media;
     }
 

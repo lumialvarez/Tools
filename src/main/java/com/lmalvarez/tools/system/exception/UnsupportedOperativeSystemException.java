@@ -3,23 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lmalvarez.tools.system;
+package com.lmalvarez.tools.system.exception;
+
+import com.lmalvarez.tools.system.OperativeSystem;
 
 /**
  *
- * @author luigu
+ * @author lmalvarez
  */
 public class UnsupportedOperativeSystemException extends Exception {
     
-    UnsupportedOperativeSystemException() {
+    public UnsupportedOperativeSystemException() {
         super("This OS is not support (OS: \"" + OperativeSystem.OS + "\")");
     }
     
-    UnsupportedOperativeSystemException(String message) {
+    public UnsupportedOperativeSystemException(String message) {
         super(message + " (OS: \"" + OperativeSystem.OS + "\")");
     }
     
-    UnsupportedOperativeSystemException(String message, Throwable throwable) {
+    public UnsupportedOperativeSystemException(String message, Throwable throwable) {
         super(message + " (OS: \"" + OperativeSystem.OS + "\")", throwable);
     }
 

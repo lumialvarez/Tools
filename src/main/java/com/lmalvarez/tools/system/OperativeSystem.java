@@ -5,13 +5,15 @@
  */
 package com.lmalvarez.tools.system;
 
+import com.lmalvarez.tools.system.exception.UnsupportedOperativeSystemException;
+
 /**
  *
- * @author luigu
+ * @author lmalvarez
  */
 public class OperativeSystem {
 
-    protected static final String OS = System.getProperty("os.name");
+    public static final String OS = System.getProperty("os.name");
     public static final String WINDOWS = "Windows";
     public static final String MAC = "Mac OS X";
     public static final String LINUX = "Linux";

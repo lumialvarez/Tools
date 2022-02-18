@@ -7,6 +7,13 @@ Java library
 - Array Manipulation
 - File manipulation
 
+## [1.1.0] - 18/02/2022
+### Added
+- Hash generation
+### Changed
+- Changes in System package organization
+- Ping and Traceroute models
+
 ## [1.0.0] - 12/02/2022
 ### Added
 - Operating System identification
