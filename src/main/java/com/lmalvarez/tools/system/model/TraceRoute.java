@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lmalvarez.tools.system;
+package com.lmalvarez.tools.system.model;
 
 /**
  *
- * @author luigu
+ * @author lmalvarez
  */
 public class TraceRoute {
 
     private int index;
     private String nombre;
     private String ip;
-    private float tiempo1;
-    private float tiempo2;
-    private float tiempo3;
+    private double tiempo1;
+    private double tiempo2;
+    private double tiempo3;
     private boolean alcanzable;
-    private float tiempoAnalisis;
+    private double tiempoAnalisis;
 
     public TraceRoute() {
         this.tiempo1 = 0;
@@ -52,27 +52,27 @@ public class TraceRoute {
         this.ip = ip;
     }
 
-    public float getTiempo1() {
+    public double getTiempo1() {
         return tiempo1;
     }
 
-    public void setTiempo1(float tiempo1) {
+    public void setTiempo1(double tiempo1) {
         this.tiempo1 = tiempo1;
     }
 
-    public float getTiempo2() {
+    public double getTiempo2() {
         return tiempo2;
     }
 
-    public void setTiempo2(float tiempo2) {
+    public void setTiempo2(double tiempo2) {
         this.tiempo2 = tiempo2;
     }
 
-    public float getTiempo3() {
+    public double getTiempo3() {
         return tiempo3;
     }
 
-    public void setTiempo3(float tiempo3) {
+    public void setTiempo3(double tiempo3) {
         this.tiempo3 = tiempo3;
     }
 
@@ -84,11 +84,11 @@ public class TraceRoute {
         this.alcanzable = alcanzable;
     }
 
-    public float getTiempoAnalisis() {
+    public double getTiempoAnalisis() {
         return tiempoAnalisis;
     }
 
-    public void setTiempoAnalisis(float tiempoAnalisis) {
+    public void setTiempoAnalisis(double tiempoAnalisis) {
         this.tiempoAnalisis = tiempoAnalisis;
     }
 

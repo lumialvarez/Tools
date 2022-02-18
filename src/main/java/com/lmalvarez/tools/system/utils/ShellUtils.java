@@ -3,7 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lmalvarez.tools.system;
+package com.lmalvarez.tools.system.utils;
+
+import com.lmalvarez.tools.system.OperativeSystem;
+import com.lmalvarez.tools.system.model.Ping;
+import com.lmalvarez.tools.system.model.PingEco;
+import com.lmalvarez.tools.system.model.TraceRoute;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +16,7 @@ import java.util.StringTokenizer;
 
 /**
  *
- * @author luigu
+ * @author lmalvarez
  */
 public class ShellUtils {
 
@@ -26,7 +31,7 @@ public class ShellUtils {
         }
     }
 
-    private static List<TraceRoute> extractTraceRouteWindows(String text) {
+    public static List<TraceRoute> extractTraceRouteWindows(String text) {
         List<TraceRoute> list = new ArrayList<>();
         int index = 0;
         int primerSalto = -1;
@@ -79,7 +84,7 @@ public class ShellUtils {
         return list;
     }
 
-    private static List<TraceRoute> extractTraceRouteLinux(String text) {
+    public static List<TraceRoute> extractTraceRouteLinux(String text) {
         List<TraceRoute> list = new ArrayList<>();
         int index = 0;
         int primerSalto = -1;
@@ -124,9 +129,9 @@ public class ShellUtils {
                 }
             }
             traceRoute.setIndex(Integer.parseInt(tIntex));
-            traceRoute.setTiempo1(tTiempo1.equals("*") ? -1 : Float.parseFloat(tTiempo1));
-            traceRoute.setTiempo2(tTiempo2.equals("*") ? -1 : Float.parseFloat(tTiempo2));
-            traceRoute.setTiempo3(tTiempo3.equals("*") ? -1 : Float.parseFloat(tTiempo3));
+            traceRoute.setTiempo1(tTiempo1.equals("*") ? -1 : Double.valueOf(tTiempo1));
+            traceRoute.setTiempo2(tTiempo2.equals("*") ? -1 : Double.valueOf(tTiempo2));
+            traceRoute.setTiempo3(tTiempo3.equals("*") ? -1 : Double.valueOf(tTiempo3));
             traceRoute.setNombre(tEndpoint);
             traceRoute.setIp(tIp);
             if (traceRoute.getTiempo1() == -1 && traceRoute.getTiempo2() == -1 && traceRoute.getTiempo3() == -1) {
@@ -187,7 +192,7 @@ public class ShellUtils {
                 String tTtl = tokens.nextToken().split("=")[1];
                 PingEco eco = new PingEco();
                 eco.setSecuencia(i + 1 - indexPrimerEco);
-                eco.setTiempo(Float.parseFloat(tTiempo));
+                eco.setTiempo(Double.valueOf(tTiempo));
                 eco.setTtl(Integer.parseInt(tTtl));
                 ping.getEcos().add(eco);
             } else {
@@ -236,9 +241,9 @@ public class ShellUtils {
                     }
                 }
             }
-            ping.setMinimo(Float.parseFloat(tMinimo));
-            ping.setMaximo(Float.parseFloat(tMaximo));
-            ping.setMedia(Float.parseFloat(tMedia));
+            ping.setMinimo(Double.valueOf(tMinimo));
+            ping.setMaximo(Double.valueOf(tMaximo));
+            ping.setMedia(Double.valueOf(tMedia));
         }
 
         return ping;
@@ -278,7 +283,7 @@ public class ShellUtils {
             String tTiempo = tokens.nextToken().split("=")[1];
             PingEco eco = new PingEco();
             eco.setSecuencia(Integer.parseInt(tSeq));
-            eco.setTiempo(Float.parseFloat(tTiempo));
+            eco.setTiempo(Double.valueOf(tTiempo));
             eco.setTtl(Integer.parseInt(tTtl));
             ping.getEcos().add(eco);
         }
@@ -303,9 +308,9 @@ public class ShellUtils {
             tMinimo = lineaTiempos.split("/")[0].trim();
             tMedia = lineaTiempos.split("/")[1].trim();
             tMaximo = lineaTiempos.split("/")[2].trim();
-            ping.setMinimo(Float.parseFloat(tMinimo));
-            ping.setMaximo(Float.parseFloat(tMaximo));
-            ping.setMedia(Float.parseFloat(tMedia));
+            ping.setMinimo(Double.valueOf(tMinimo));
+            ping.setMaximo(Double.valueOf(tMaximo));
+            ping.setMedia(Double.valueOf(tMedia));
         }
         if (ping.getEnviados() > ping.getEcos().size()) {
             List<PingEco> tmp = new ArrayList<>();

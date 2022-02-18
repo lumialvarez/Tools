@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lmalvarez.tools.system;
+package com.lmalvarez.tools.system.model;
 
 /**
  *
- * @author luigu
+ * @author lmalvarez
  */
 public class PingEco {
 
     private int secuencia;
-    private float tiempo;
+    private double tiempo;
     private int ttl;
 
     public int getSecuencia() {
@@ -23,11 +23,11 @@ public class PingEco {
         this.secuencia = secuencia;
     }
 
-    public float getTiempo() {
+    public double getTiempo() {
         return tiempo;
     }
 
-    public void setTiempo(float tiempo) {
+    public void setTiempo(double tiempo) {
         this.tiempo = tiempo;
     }
 

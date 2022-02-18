@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lmalvarez.tools;
+package com.lmalvarez.tools.system;
 
-import com.lmalvarez.tools.system.OperativeSystem;
-import com.lmalvarez.tools.system.Ping;
-import com.lmalvarez.tools.system.ShellUtils;
-import com.lmalvarez.tools.system.TraceRoute;
+import com.lmalvarez.tools.system.model.Ping;
+import com.lmalvarez.tools.system.model.TraceRoute;
+import com.lmalvarez.tools.system.utils.ShellUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
