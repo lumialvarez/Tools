@@ -9,10 +9,9 @@ Java library
 
 ## [1.1.0] - 18/02/2022
 ### Added
-- JWT validation
-
+- Hash generation
 ### Changed
-- changes in System package organization
+- Changes in System package organization
 - Ping and Traceroute models
 
 ## [1.0.0] - 12/02/2022
