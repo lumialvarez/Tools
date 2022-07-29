@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.lmalvarez</groupId>
-    <artifactId>Tools</artifactId>
-    <version>1.2.0</version>
+    <artifactId>tools</artifactId>
+    <version>1.2.1</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -75,14 +75,9 @@
 
     <distributionManagement>
         <repository>
-            <id>central</id>
-            <name>a0bcalegpr2iy-artifactory-primary-0-releases</name>
-            <url>https://lmalvarez.jfrog.io/artifactory/default-maven-local</url>
+            <id>github_tools</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/lumialvarez/tools</url>
         </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>a0bcalegpr2iy-artifactory-primary-0-snapshots</name>
-            <url>https://lmalvarez.jfrog.io/artifactory/default-maven-local</url>
-        </snapshotRepository>
     </distributionManagement>
 </project>
