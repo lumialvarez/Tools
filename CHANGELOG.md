@@ -7,6 +7,10 @@ Java library
 - Array Manipulation
 - File manipulation
 
+## [1.2.2] - 28/07/2022
+### Fixed
+- Fix configuration file of package repository
+
 ## [1.2.1] - 28/07/2022
 ### Fixed
 - Change package repository
